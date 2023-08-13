@@ -4,8 +4,9 @@
     "description": "System for web browser.",
     "private": true,
     "main": "index.js",
+    "type": "module",
     "scripts": {
-        "build": "webpack"
+        "build": "rollup --config rollup.config.js"
     },
     "repository": {
         "type": "git",
@@ -18,7 +19,7 @@
     },
     "homepage": "https://github.com/openink/websys",
     "devDependencies": {
-        "webpack": "^5.88.2",
-        "webpack-cli": "^5.1.4"
+        "@rollup/plugin-terser": "^0.4.3",
+        "rollup": "^3.28.0"
     }
 }
