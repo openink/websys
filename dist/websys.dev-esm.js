@@ -56,9 +56,9 @@ function shutdown(id){
 /* websys ©2023 LJM12914.
  * https://github.com/openink/websys
  */
-const websys = {
+const Websys = {
     create,
     shutdown
 };
 
-export { websys as default };
+export { Websys as default };

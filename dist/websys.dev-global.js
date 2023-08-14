@@ -59,7 +59,7 @@
     /* websys ©2023 LJM12914.
      * https://github.com/openink/websys
      */
-    const websys = {
+    const Websys = {
         create,
         shutdown
     };
@@ -67,8 +67,8 @@
     /* websys ©2023 LJM12914.
      * https://github.com/openink/websys
      */
-    Object.defineProperty(window, "websys", {
-        value: websys,
+    Object.defineProperty(window, "Websys", {
+        value: Websys,
         writable: false,
         configurable: false,
         enumerable: true

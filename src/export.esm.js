@@ -3,9 +3,9 @@
  */
 
 import create from "./lifecycle/create";
-import shutdown from "./lifecycle/shutdown";
+import turnOff from "./lifecycle/turnOff";
 const Websys = {
     create,
-    shutdown
+    shutdown: turnOff
 };
 export default Websys;
