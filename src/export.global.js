@@ -2,9 +2,9 @@
  * https://github.com/openink/websys
  */
 
-import websys from "./export.esm";
-Object.defineProperty(window, "websys", {
-    value: websys,
+import Websys from "./export.esm";
+Object.defineProperty(window, "Websys", {
+    value: Websys,
     writable: false,
     configurable: false,
     enumerable: true

@@ -4,8 +4,8 @@
 
 import create from "./lifecycle/create";
 import shutdown from "./lifecycle/shutdown";
-const websys = {
+const Websys = {
     create,
     shutdown
 };
-export default websys;
+export default Websys;

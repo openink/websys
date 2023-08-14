@@ -12,7 +12,7 @@ const terserConfig = {
 };
 export default defineConfig([
     {
-        input: "export.esm.js",
+        input: "src/export.esm.js",
         output: {
             file: 'dist/websys.esm.js',
     		format: "esm",
@@ -21,14 +21,14 @@ export default defineConfig([
         }
     },
     {
-        input: "export.esm.js",
+        input: "src/export.esm.js",
         output: {
             file: 'dist/websys.dev-esm.js',
     		format: "esm"
         }
     },
     {
-        input: "export.global.js",
+        input: "src/export.global.js",
         output: {
             file: 'dist/websys.global.js',
     		format: "iife",
@@ -37,7 +37,7 @@ export default defineConfig([
         }
     },
     {
-        input: "export.global.js",
+        input: "src/export.global.js",
         output: {
             file: 'dist/websys.dev-global.js',
     		format: "iife"
