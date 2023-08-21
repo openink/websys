@@ -1,5 +1,6 @@
 ﻿{
     "compilerOptions": {
+        "target": "ESNext",
         "module": "ESNext",
         "allowJs": true,
         "checkJs": true,
@@ -8,5 +9,4 @@
     "exclude": [
         "dist"
     ],
-    
 }

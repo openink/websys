@@ -1,8 +1,9 @@
-/* Websys ©2023 LJM12914.
+﻿/* Websys ©2023 LJM12914.
  * https://github.com/openink/websys
  */
+import { randoma2Z } from "./utils/utils";
 
-class Websys{
+export default class Websys{
 //#region 变量
     /**挂载根元素。
      * @type {HTMLElement}
@@ -26,58 +27,79 @@ class Websys{
 //#region 构造器
     /**创建新的实例。
      * @param {{
-     *     rootEl :HTMLElement;
-     *     taskBarEl? :HTMLElement;
+     *     root :HTMLElement;
+     *     taskBar? :HTMLElement;
+     *     settings? :boolean;
      * }} options
      */
     constructor(options){
+        const { root, taskBar, settings } = options;
         //验证参数
         const
-            rootEl_verified = "rootEl" in options && options.rootEl instanceof HTMLElement,
-            taskBarEl_verified = !("taskBarEl" in options) || options.taskBarEl instanceof HTMLElement;
+            rootEl_verified = root instanceof HTMLElement,
+            taskBarEl_verified = !("taskBar" in options) || taskBar instanceof HTMLElement;
         //todo:构建统一验证/报错函数
         if(!rootEl_verified || !taskBarEl_verified) throw new TypeError("参数有误。");
         //写入实例
-        this.#rootEl = options.rootEl;
-        this.#taskBarEl = options.taskBarEl ?? null;
+        this.#rootEl = options.root;
+        this.#taskBarEl = options.taskBar ?? null;
         //启动实例
         this.restart();
         //注册基本应用
-
+        this.register();
+        if(settings === true) this.register();
     }
 //#endregion
 //#region 系统级操作
-    /**销毁实例。
-     * @param {{
-     *     reason? :string;
-     * }} options
-     */
-    dispose(options){
-        if(!this.#running) return;
-        for(let i in this) delete this[i];
-    }
     //暂时不想搞这个
     //freeze(){
     //    
     //}
-    pause(){
+    /**删除界面并终止所有正在运行的程序。
+     * @param {string} [reason]
+     * @returns {boolean}
+     */
+    stop(reason){
         if(!this.#running) return;
-
+        this.#running = false;
     }
+    /**启动系统。
+     * 
+     * @returns {boolean}
+     */
     restart(){
         if(this.#running) return;
+        this.#running = true;
+    }
+    saveState(){
 
     }
 //#endregion
 //#region 程序注册
-    register(){
+    register(source){
+
+    }
+    unregister(){
 
     }
 //#endregion
+//#region 程序运行
+    run(){
+
+    }
+    kill(){
+
+    }
+//#endregion
+//#region 通信
+    postMessage(){
+
+    }
+    subscribe(){
+
+    }
+    unsubscribe(){
+        
+    }
+//#endregion
 }
-
-/* Websys ©2023 LJM12914.
- * https://github.com/openink/websys
- */
-
-export { Websys as default };

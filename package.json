@@ -1,9 +1,9 @@
 {
     "name": "websys",
-    "version": "0.0.1",
-    "description": "System for web browser.",
+    "version": "0.0.2",
+    "description": "Highly extensiable program renderer in web browser.",
     "private": true,
-    "main": "index.js",
+    "main": "main.js",
     "type": "module",
     "scripts": {
         "build": "rollup --config rollup.config.js"

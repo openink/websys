@@ -1,1 +1,1 @@
-﻿
+﻿type registry = appProfile[];

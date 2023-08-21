@@ -1,70 +1,85 @@
 (function () {
     'use strict';
 
-    /**@type {Map<string, sysProfile>}*/
-    const sys_list = new Map();
-
-    /**随机生成指定长度的a-zA-Z字符串
-     * @param {number} length
-     * @returns {string}
-    */
-    function randoma2Z(length){ //52
-        /**@type {string}*/
-        let result = "";
-        for(let i = 0; i < length; i++){
-            /**@type {number}*/
-            let random_char_code = Math.floor(Math.random() * 52);
-            if(random_char_code > 25) result += String.fromCharCode(random_char_code + 71);
-            else result += String.fromCharCode(random_char_code + 65);
-        }
-        return result;
-    }
-
-    /**
-     * 创建新的实例。
-     * @param {createOptions} options
-     */
-    function create(options){
-        if(!(options.rootEl instanceof HTMLElement) || !(options.taskBarEl instanceof HTMLElement)) return;
-        const id = randoma2Z(12);
-        sys_list.set(id, {
-            registry: [],
-            removed: false,
-            rootEl: options.rootEl,
-            taskBarEl: options.taskBarEl
-        });
-        return {
-            id,
-            //todo:系统及操控API
-        }
-    }
-
-    /**正常结束实例
-     * @param {string} id
-    */
-    function shutdown(id){
-        const profile = sys_list.get(id);
-        if(profile === undefined) return;
-        profile.removed = true;
-        //const prevent
-        for(let app of profile.registry){
-            if(app.running){
-                //todo:给所有正在运行的应用发送停止信号
-                //预留应用可阻止系统关闭的
-                app.apis.onShutDown();
-            }
-        }
-    }
-
-    /* websys ©2023 LJM12914.
+    /* Websys ©2023 LJM12914.
      * https://github.com/openink/websys
      */
-    const Websys = {
-        create,
-        shutdown
-    };
 
-    /* websys ©2023 LJM12914.
+    class Websys{
+    //#region 变量
+        /**挂载根元素。
+         * @type {HTMLElement}
+         */
+        #rootEl;
+        /**（可选）
+         * @type {HTMLElement} HTMLElement包含undefined和null，手动排除undefined
+         */
+        #taskBarEl;
+        /**程序注册处
+         * @type {registry}
+        */
+        #registry = [];
+        /**是否运行中。
+         * @type {boolean}
+         */
+        #running = false;
+    //#endregion
+    //#region 访问器
+    //#endregion
+    //#region 构造器
+        /**创建新的实例。
+         * @param {{
+         *     rootEl :HTMLElement;
+         *     taskBarEl? :HTMLElement;
+         * }} options
+         */
+        constructor(options){
+            //验证参数
+            const
+                rootEl_verified = "rootEl" in options && options.rootEl instanceof HTMLElement,
+                taskBarEl_verified = !("taskBarEl" in options) || options.taskBarEl instanceof HTMLElement;
+            //todo:构建统一验证/报错函数
+            if(!rootEl_verified || !taskBarEl_verified) throw new TypeError("参数有误。");
+            //写入实例
+            this.#rootEl = options.rootEl;
+            this.#taskBarEl = options.taskBarEl ?? null;
+            //启动实例
+            this.restart();
+            //注册基本应用
+
+        }
+    //#endregion
+    //#region 系统级操作
+        /**销毁实例。
+         * @param {{
+         *     reason? :string;
+         * }} options
+         */
+        dispose(options){
+            if(!this.#running) return;
+            for(let i in this) delete this[i];
+        }
+        //暂时不想搞这个
+        //freeze(){
+        //    
+        //}
+        pause(){
+            if(!this.#running) return;
+
+        }
+        restart(){
+            if(this.#running) return;
+
+        }
+    //#endregion
+    //#region 程序注册
+        register(){
+
+        }
+    //#endregion
+    }
+
+    /* Websys ©2023 LJM12914.
      * https://github.com/openink/websys
      */
     Object.defineProperty(window, "Websys", {
