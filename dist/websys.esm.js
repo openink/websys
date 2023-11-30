@@ -1,0 +1,1 @@
+class t{#t;#r;#s=[];#n=!1;constructor(t){const r="rootEl"in t&&t.rootEl instanceof HTMLElement,s=!("taskBarEl"in t)||t.taskBarEl instanceof HTMLElement;if(!r||!s)throw new TypeError("参数有误。");this.#t=t.rootEl,this.#r=t.taskBarEl??null,this.restart()}dispose(t){if(this.#n)for(let r in this)delete this[r]}pause(){this.#n}restart(){this.#n}register(){}}export{t as default};
